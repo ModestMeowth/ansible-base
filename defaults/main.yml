@@ -1,9 +1,9 @@
 base_timezone: America/Chicago
 base_locales:
   - name: C
-  - name: C_UTF-8 UTF-8
+  - name: C.utf8
   - name: en_US
-  - name: en_US iso-8859-1
+  - name: en_US.iso-8859-1
   - name: en_US.iso-8859-15
   - name: en_US.utf8
 base_locale: en_US.utf8

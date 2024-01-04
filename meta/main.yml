@@ -1,0 +1,8 @@
+---
+galaxy_info:
+  role_name: base
+  author: ModestMeowth
+  description: Common base configuration
+collections:
+  - community.general
+dependencies: []

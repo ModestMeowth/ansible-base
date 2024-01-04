@@ -3,7 +3,7 @@ base_locales:
   - name: C
   - name: C.utf8
   - name: en_US
-  - name: en_US.iso-8859-1
-  - name: en_US.iso-8859-15
+  - name: en_US.iso-88591
+  - name: en_US.iso-885915
   - name: en_US.utf8
 base_locale: en_US.utf8

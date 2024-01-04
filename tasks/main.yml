@@ -14,7 +14,12 @@
   changed_when: false
   failed_when: false
 
+- name: Parse Lang from current locale
+  set_fact:
+    locale_lang: "{{ base_locale_state.stdout | regex_search('LANG=([^\n]+)', '\\1') | first }}"
+    locale_language: "{{ base_locale_state.stdout | regex_search('LANG_LANGUAGE=([^\n]+)', '\\1') | default([local_lang], true) | first }}"
+
 - name: Set locale
   become: yest
   command: localectl set-locale LANG={{ base_locale }} LANGUAGE={{ base_locale }}
-  changed_when: base_locale_state != base_locale
+  changed_when: local_lang != base_locale or local_language != base_locale

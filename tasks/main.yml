@@ -1,0 +1,8 @@
+- name: Set Timezone
+  community.general.timezone:
+    name: "{{ timezone }}"
+- name: Set Locale
+  community.general.locale_gen:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default(omit) }}"
+  loop: "{{ locales }}"

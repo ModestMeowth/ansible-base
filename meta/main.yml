@@ -3,6 +3,13 @@ galaxy_info:
   role_name: base
   author: ModestMeowth
   description: Common base configuration
+  license: BSD-3-Clause
+  platforms:
+    - name: Ubuntu
+      version:
+        - jammy
+
 collections:
   - community.general
+
 dependencies: []

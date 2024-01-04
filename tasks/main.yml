@@ -9,17 +9,20 @@
   loop: "{{ base_locales }}"
   
 - name: Check locale
-  command: localectl status
+  ansible.builtin.command: localectl status
   register: base_locale_state
   changed_when: false
   failed_when: false
 
 - name: Parse Lang from current locale
-  set_fact:
+  ansible.builtin.set_fact:
     locale_lang: "{{ base_locale_state.stdout | regex_search('LANG=([^\n]+)', '\\1') | first }}"
+
+- name: Parse Langage from current locale
+  ansible.builtin.set_fact:
     locale_language: "{{ base_locale_state.stdout | regex_search('LANGUAGE=([^\n]+)', '\\1') | default([locale_lang], true) | first }}"
 
 - name: Set locale
-  become: yest
+  become: yes
   command: localectl set-locale LANG={{ base_locale }} LANGUAGE={{ base_locale }}
   changed_when: locale_lang != base_locale or locale_language != base_locale

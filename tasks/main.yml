@@ -1,8 +1,20 @@
 - name: Set Timezone
   community.general.timezone:
-    name: "{{ timezone }}"
-- name: Set Locale
+    name: "{{ base_timezone }}"
+
+- name: Generate Locales
   community.general.locale_gen:
     name: "{{ item.name }}"
     state: "{{ item.state | default(omit) }}"
-  loop: "{{ locales }}"
+  loop: "{{ base_locales }}"
+  
+- name: Check locale
+  command: localectl status
+  register: base_locale_state
+  changed_when: false
+  failed_when: false
+
+- name: Set locale
+  become: yest
+  command: localectl set-locale LANG={{ base_locale }} LANGUAGE={{ base_locale }}
+  changed_when: base_locale_state != base_locale
